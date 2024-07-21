@@ -4,19 +4,22 @@ import "./homePage.scss";
 import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
-
-  const {currentUser} = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="homePage">
       <div className="textContainer">
         <div className="wrapper">
-          <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
+          <h1 className="title">
+            Discover Properties & Secure Your Ideal Home
+          </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-            explicabo suscipit cum eius, iure est nulla animi consequatur
-            facilis id pariatur fugit quos laudantium temporibus dolor ea
-            repellat provident impedit!
+            Welcome to GorkhaHomes, your ultimate destination for finding the
+            perfect property in Nepal. Our user-friendly platform offers a vast
+            selection of homes, from cozy apartments to luxurious estates. With
+            advanced search features and personalized recommendations, we make
+            your home-buying journey seamless and enjoyable. Start your dream
+            home search today with GorkhaHomes.
           </p>
           <SearchBar />
           <div className="boxes">
@@ -36,11 +39,15 @@ function HomePage() {
         </div>
       </div>
       <div className="imgContainer">
-        <img src="/bg.png" alt="" />
+        <img
+          src="https://i.ytimg.com/vi/qpXWepTBU90/maxresdefault.jpg"
+          alt=""
+        />
       </div>
-      
     </div>
   );
 }
 
 export default HomePage;
+
+// /bg.png
