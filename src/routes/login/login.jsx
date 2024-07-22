@@ -61,7 +61,7 @@ function Login() {
         </form>
       </div>
       <div className="imgContainer">
-        <img src="/bg.png" alt="" />
+        <img src="https://skillsewa.com/storage/1376/o.jpg" alt="" />
       </div>
     </div>
   );

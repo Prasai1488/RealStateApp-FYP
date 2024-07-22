@@ -24,7 +24,7 @@ function Navbar() {
         <a href="/">Home</a>
         <a href="/">About</a>
         <a href="/">Contact</a>
-        <a href="/">User-Feedback</a>
+        <a href="/">Testimonials</a>
       </div>
       <div className="right">
         {currentUser ? (
@@ -55,7 +55,7 @@ function Navbar() {
           <a href="/">Home</a>
           <a href="/">About</a>
           <a href="/">Contact</a>
-          <a href="/">Agents</a>
+          <a href="/">Testimonials</a>
           <a href="/">Sign in</a>
           <a href="/">Sign up</a>
         </div>
