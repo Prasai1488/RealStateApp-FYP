@@ -4,11 +4,13 @@ import ListPage from "./routes/listPage/listPage";
 import { Layout, RequireAuth } from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/singlePage";
 import ProfilePage from "./routes/profilePage/profilePage";
+import EditPostPage from "./routes/editPostPage/editPostPage";
 import Login from "./routes/login/login";
 import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NewPostPage from "./routes/newPostPage/newPostPage";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -57,6 +59,10 @@ function App() {
         {
           path: "/add",
           element: <NewPostPage />,
+        },
+        {
+          path: "/edit/:id",
+          element: <EditPostPage />,
         },
       ],
     },
