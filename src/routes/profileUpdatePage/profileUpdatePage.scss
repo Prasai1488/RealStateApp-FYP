@@ -3,14 +3,19 @@
   display: flex;
 
   .formContainer {
-    flex:3;
+    flex: 3;
     display: flex;
     align-items: center;
     justify-content: center;
+
     form {
       display: flex;
       flex-direction: column;
       gap: 20px;
+      padding: 40px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
       .item {
         display: flex;
@@ -26,14 +31,21 @@
           border: 1px solid gray;
         }
       }
+
       button {
         padding: 20px;
         border-radius: 5px;
         border: none;
-        background-color: teal;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
         color: white;
         font-weight: bold;
         cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          background: linear-gradient(135deg, #feb47b, #ff7e5f);
+          transform: scale(1.05);
+        }
       }
     }
   }
@@ -47,7 +59,7 @@
     align-items: center;
     justify-content: center;
 
-    .avatar{
+    .avatar {
       width: 50%;
       object-fit: cover;
     }

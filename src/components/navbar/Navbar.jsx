@@ -18,7 +18,7 @@ function Navbar() {
     <nav>
       <div className="left">
         <a href="/" className="logo">
-          <img src="https://www.gurkhawatch.com/wp-content/uploads/2020/12/favlogo.png" alt="" />
+          <img src="https://thumbs.dreamstime.com/b/two-crossed-kukri-knives-two-crossed-kukri-knives-traditional-nepali-machete-weapon-black-white-line-art-logo-vector-clip-art-267214934.jpg" alt="" />
           <span>GorkhaHomes</span>
         </a>
         <a href="/">Home</a>

@@ -85,7 +85,7 @@ function Chat({ chats }) {
               backgroundColor:
                 c.seenBy.includes(currentUser.id) || chat?.id === c.id
                   ? "white"
-                  : "#fecd514e",
+                  : "#d0e7ff", // Updated color for unseen messages
             }}
             onClick={() => handleOpenChat(c.id, c.receiver)}
           >
@@ -137,21 +137,3 @@ function Chat({ chats }) {
 }
 
 export default Chat;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
