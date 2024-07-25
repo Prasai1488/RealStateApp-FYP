@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,25 +6,32 @@ import { useNotificationStore } from "../../lib/notificationStore";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-
   const { currentUser } = useContext(AuthContext);
-
   const fetch = useNotificationStore((state) => state.fetch);
   const number = useNotificationStore((state) => state.number);
 
-  if(currentUser) fetch();
+  useEffect(() => {
+    if (currentUser) {
+      fetch();
+    }
+  }, [currentUser, fetch]);
 
   return (
     <nav>
       <div className="left">
         <a href="/" className="logo">
-          <img src="https://thumbs.dreamstime.com/b/two-crossed-kukri-knives-two-crossed-kukri-knives-traditional-nepali-machete-weapon-black-white-line-art-logo-vector-clip-art-267214934.jpg" alt="" />
+          <img
+            src="https://thumbs.dreamstime.com/b/two-crossed-kukri-knives-two-crossed-kukri-knives-traditional-nepali-machete-weapon-black-white-line-art-logo-vector-clip-art-267214934.jpg"
+            alt=""
+          />
           <span>GorkhaHomes</span>
         </a>
         <a href="/">Home</a>
         <a href="/">About</a>
         <a href="/">Contact</a>
-        <a href="/">Testimonials</a>
+        {currentUser && currentUser.role === "admin" && (
+          <a href="/admin">Dashboard</a>
+        )}
       </div>
       <div className="right">
         {currentUser ? (
@@ -45,19 +52,17 @@ function Navbar() {
           </>
         )}
         <div className="menuIcon">
-          <img
-            src="/menu.png"
-            alt=""
-            onClick={() => setOpen((prev) => !prev)}
-          />
+          <img src="/menu.png" alt="" onClick={() => setOpen((prev) => !prev)} />
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
           <a href="/">About</a>
           <a href="/">Contact</a>
-          <a href="/">Testimonials</a>
-          <a href="/">Sign in</a>
-          <a href="/">Sign up</a>
+          {currentUser && currentUser.role === "admin" && (
+            <a href="/admin">Dashboard</a>
+          )}
+          {!currentUser && <a href="/login">Sign in</a>}
+          {!currentUser && <a href="/register">Sign up</a>}
         </div>
       </div>
     </nav>

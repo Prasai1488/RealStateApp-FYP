@@ -1,4 +1,3 @@
-
 import "./singlePage.scss";
 import Slider from "../../components/slider/Slider";
 import Map from "../../components/map/Map";
@@ -45,6 +44,10 @@ function SinglePage() {
       }
     }
   };
+
+  if (!post) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="singlePage">
@@ -179,3 +182,4 @@ function SinglePage() {
 }
 
 export default SinglePage;
+
