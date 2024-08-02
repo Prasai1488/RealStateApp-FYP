@@ -58,6 +58,10 @@ const EditPostPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+       // Process the value from ReactQuill to remove <p> tags
+       const processedValue = value.replace(/<\/?[^>]+(>|$)/g, '');
+
     try {
       await apiRequest.put(`/posts/${id}`, {
         postData: {
@@ -66,7 +70,7 @@ const EditPostPage = () => {
           images: images,
         },
         postDetail: {
-          desc: value,
+          desc: processedValue,
           income: post.income,
           school: parseInt(post.school),
           bus: parseInt(post.bus),

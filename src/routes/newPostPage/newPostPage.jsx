@@ -10,6 +10,7 @@ function NewPostPage() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
+  const [descError, setDescError] = useState("");
 
   const navigate = useNavigate()
 
@@ -17,6 +18,18 @@ function NewPostPage() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const inputs = Object.fromEntries(formData);
+
+    // Process the value from ReactQuill to remove <p> tags
+    const processedValue = value.replace(/<\/?[^>]+(>|$)/g, '');
+
+     // Check description constraints
+    if (processedValue.length > 1000) {
+      setDescError("Description cannot exceed 1000 characters.");
+      return;
+    } else {
+      setDescError("");
+    }
+
 
     try {
       const res = await apiRequest.post("/posts", {
@@ -34,7 +47,7 @@ function NewPostPage() {
           images: images,
         },
         postDetail: {
-          desc: value,
+          desc: processedValue, // Use processed value
           utilities: inputs.utilities,
           pet: inputs.pet,
           income: inputs.income,
@@ -63,7 +76,8 @@ function NewPostPage() {
             </div>
             <div className="item">
               <label htmlFor="price">Price</label>
-              <input id="price" name="price" type="number" />
+              <input id="price" name="price" type="number" min="1" max="5000000"/>
+              
             </div>
             <div className="item">
               <label htmlFor="address">Address</label>
@@ -72,6 +86,7 @@ function NewPostPage() {
             <div className="item description">
               <label htmlFor="desc">Description</label>
               <ReactQuill theme="snow" onChange={setValue} value={value} />
+              {descError && <span className="error">{descError}</span>}
             </div>
             <div className="item">
               <label htmlFor="city">City</label>
@@ -107,7 +122,7 @@ function NewPostPage() {
               <select name="property">
                 <option value="apartment">Apartment</option>
                 <option value="house">House</option>
-                <option value="condo">Condo</option>
+             
                 <option value="land">Land</option>
               </select>
             </div>

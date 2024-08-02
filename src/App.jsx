@@ -148,7 +148,7 @@ function App() {
     {
       path: "/admin",
       element: (
-        <ProtectedRoute role="admin">
+        <ProtectedRoute username="admin">
           <AdminDashboard />
         </ProtectedRoute>
       ),

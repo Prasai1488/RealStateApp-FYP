@@ -16,6 +16,12 @@ function Navbar() {
     }
   }, [currentUser, fetch]);
 
+  // Log currentUser and username to debug
+  console.log("Current User:", currentUser);
+  if (currentUser) {
+    console.log("Current User Username:", currentUser.username);
+  }
+
   return (
     <nav>
       <div className="left">
@@ -29,7 +35,7 @@ function Navbar() {
         <a href="/">Home</a>
         <a href="/">About</a>
         <a href="/">Contact</a>
-        {currentUser && currentUser.role === "admin" && (
+        {currentUser && currentUser.username === "admin" && (
           <a href="/admin">Dashboard</a>
         )}
       </div>
@@ -58,7 +64,7 @@ function Navbar() {
           <a href="/">Home</a>
           <a href="/">About</a>
           <a href="/">Contact</a>
-          {currentUser && currentUser.role === "admin" && (
+          {currentUser && currentUser.username === "admin" && (
             <a href="/admin">Dashboard</a>
           )}
           {!currentUser && <a href="/login">Sign in</a>}
