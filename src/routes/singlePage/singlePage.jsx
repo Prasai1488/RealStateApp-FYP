@@ -111,6 +111,14 @@ function SinglePage() {
                 <p>{post.postDetail.income}</p>
               </div>
             </div>
+            <div className="feature">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY5u61Ich2-HvGRBe3hj043ILiPKh6HlmGrw&s" alt="" />
+
+              <div className="featureText">
+                <span>Property Status</span>
+                <p>{post.postDetail.propertyStatus}</p>
+              </div>
+            </div>
           </div>
           <p className="title">Sizes</p>
           <div className="sizes">
@@ -182,4 +190,3 @@ function SinglePage() {
 }
 
 export default SinglePage;
-

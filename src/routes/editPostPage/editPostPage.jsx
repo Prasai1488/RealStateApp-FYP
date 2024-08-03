@@ -17,6 +17,7 @@ const EditPostPage = () => {
     school: "",
     bus: "",
     restaurant: "",
+    propertyStatus: "", // Include propertyStatus in the state
     images: [],
   });
   const [value, setValue] = useState("");
@@ -36,6 +37,7 @@ const EditPostPage = () => {
           school: postDetail.school,
           bus: postDetail.bus,
           restaurant: postDetail.restaurant,
+          propertyStatus: postDetail.propertyStatus, // Set propertyStatus from response
           images,
         });
         setValue(postDetail.desc);
@@ -59,8 +61,8 @@ const EditPostPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-       // Process the value from ReactQuill to remove <p> tags
-       const processedValue = value.replace(/<\/?[^>]+(>|$)/g, '');
+    // Process the value from ReactQuill to remove <p> tags
+    const processedValue = value.replace(/<\/?[^>]+(>|$)/g, '');
 
     try {
       await apiRequest.put(`/posts/${id}`, {
@@ -75,6 +77,7 @@ const EditPostPage = () => {
           school: parseInt(post.school),
           bus: parseInt(post.bus),
           restaurant: parseInt(post.restaurant),
+          propertyStatus: post.propertyStatus, // Include propertyStatus in submission
         },
       });
       navigate(`/profile`); // Navigate back to the profile page after updating
@@ -114,7 +117,19 @@ const EditPostPage = () => {
               <label htmlFor="desc">Description</label>
               <ReactQuill theme="snow" onChange={setValue} value={value} />
             </div>
-            
+            <div className="item">
+              <label htmlFor="propertyStatus">Property Status</label>
+              <select
+                id="propertyStatus"
+                name="propertyStatus"
+                value={post.propertyStatus}
+                onChange={handleChange}
+              >
+                <option value="Available">Available</option>
+                <option value="Booked">Booked</option>
+                <option value="SoldOut">Sold Out</option>
+              </select>
+            </div>
             <div className="item">
               <label htmlFor="school">School</label>
               <input

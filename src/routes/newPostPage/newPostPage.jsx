@@ -55,6 +55,7 @@ function NewPostPage() {
           school: parseInt(inputs.school),
           bus: parseInt(inputs.bus),
           restaurant: parseInt(inputs.restaurant),
+          propertyStatus: inputs.propertyStatus, // Add propertyStatus
         },
       });
       navigate("/"+res.data.id)
@@ -94,11 +95,11 @@ function NewPostPage() {
             </div>
             <div className="item">
               <label htmlFor="bedroom">Bedroom Number</label>
-              <input min={1} id="bedroom" name="bedroom" type="number" />
+              <input min={0} id="bedroom" name="bedroom" type="number" />
             </div>
             <div className="item">
               <label htmlFor="bathroom">Bathroom Number</label>
-              <input min={1} id="bathroom" name="bathroom" type="number" />
+              <input min={0} id="bathroom" name="bathroom" type="number" />
             </div>
             <div className="item">
               <label htmlFor="latitude">Latitude</label>
@@ -127,6 +128,7 @@ function NewPostPage() {
               </select>
             </div>
 
+            
             <div className="item">
               <label htmlFor="utilities">Utilities Policy</label>
               <select name="utilities">
@@ -156,17 +158,27 @@ function NewPostPage() {
               <input min={0} id="size" name="size" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="school">School</label>
+              <label htmlFor="school">School nearby</label>
               <input min={0} id="school" name="school" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="bus">bus</label>
+              <label htmlFor="bus">Bus station nearby</label>
               <input min={0} id="bus" name="bus" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="restaurant">Restaurant</label>
+              <label htmlFor="restaurant">Restaurants nearby</label>
               <input min={0} id="restaurant" name="restaurant" type="number" />
             </div>
+
+            <div className="item">
+              <label htmlFor="propertyStatus">Property Status</label>
+              <select name="propertyStatus">
+                <option value="Available">Available</option>
+                <option value="Booked">Booked</option>
+                <option value="SoldOut">Sold Out</option>
+              </select>
+            </div>
+
             <button className="sendButton">Add</button>
             {error && <span>error</span>}
           </form>
