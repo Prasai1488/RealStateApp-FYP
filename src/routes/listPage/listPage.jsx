@@ -3,8 +3,8 @@ import './listPage.scss';
 import Filter from '../../components/filter/Filter';
 import Card from '../../components/card/Card';
 import Map from '../../components/map/Map';
-import { Await, useLoaderData, useSearchParams } from 'react-router-dom';
 import { Suspense } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import apiRequest from '../../lib/apiRequest';
 
 function ListPage() {
@@ -22,8 +22,9 @@ function ListPage() {
       const maxPrice = searchParams.get('maxPrice') || 0;
       const property = searchParams.get('property') || '';
       const bedroom = searchParams.get('bedroom') || '';
+      const propertyStatus = searchParams.get('propertyStatus') || '';
 
-      const res = await apiRequest.get(`/posts?page=${page}&limit=5&type=${type}&city=${city}&minPrice=${minPrice}&maxPrice=${maxPrice}&property=${property}&bedroom=${bedroom}`);
+      const res = await apiRequest.get(`/posts?page=${page}&limit=5&type=${type}&city=${city}&minPrice=${minPrice}&maxPrice=${maxPrice}&property=${property}&bedroom=${bedroom}&propertyStatus=${propertyStatus}`);
       setPosts(res.data.posts);
       setCurrentPage(res.data.currentPage);
       setTotalPages(res.data.totalPages);

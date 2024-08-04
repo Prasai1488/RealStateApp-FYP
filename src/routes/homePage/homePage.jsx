@@ -40,7 +40,7 @@ function HomePage() {
       </div>
       <div className="imgContainer">
         <img
-          src="https://i.ytimg.com/vi/qpXWepTBU90/maxresdefault.jpg"
+          src="../../public/bg02.png"
           alt=""
         />
       </div>

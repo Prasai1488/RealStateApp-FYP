@@ -6,23 +6,26 @@ function UserPosts() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const fetchUsersAndPosts = async (page) => {
+    try {
+      const res = await apiRequest.get(`/admin/users?page=${page}`);
+      console.log("Fetched Users and Posts Data: ", res.data); // Log the data structure
+      setUsers(res.data.users);
+      setTotalPages(res.data.totalPages);
+      setLoading(false);
+    } catch (err) {
+      console.error('Failed to load users and posts:', err);
+      setError('Failed to load users and posts');
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchUsersAndPosts = async () => {
-      try {
-        const res = await apiRequest.get('/admin/users');
-        console.log("Fetched Users and Posts Data: ", res.data); // Log the data structure
-        setUsers(res.data);
-        setLoading(false);
-      } catch (err) {
-        console.error('Failed to load users and posts:', err);
-        setError('Failed to load users and posts');
-        setLoading(false);
-      }
-    };
-
-    fetchUsersAndPosts();
-  }, []);
+    fetchUsersAndPosts(currentPage);
+  }, [currentPage]);
 
   const handleApprove = async (postId) => {
     try {
@@ -60,6 +63,12 @@ function UserPosts() {
     } catch (err) {
       setError('Failed to delete post');
     }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    setLoading(true);
+    fetchUsersAndPosts(page);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -106,8 +115,24 @@ function UserPosts() {
           ))}
         </div>
       ))}
+      <div className="pagination">
+        <button 
+          onClick={() => handlePageChange(currentPage - 1)} 
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button 
+          onClick={() => handlePageChange(currentPage + 1)} 
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
 
 export default UserPosts;
+

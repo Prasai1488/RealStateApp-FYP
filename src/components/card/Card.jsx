@@ -38,12 +38,12 @@ function Card({ item }) {
         <div className="bottom">
           <div className="features">
             <div className="feature">
-              <img src="/bed.png" alt="" />
-              <span>{item.bedroom} bedroom</span>
+              <img src="/size.png" alt="" />
+              <span>{item.postDetail?.size ? `${item.postDetail.size} sqft` : 'Size not available'}</span>
             </div>
             <div className="feature">
-              <img src="/bath.png" alt="" />
-              <span>{item.bathroom} bathroom</span>
+              <img src="/status.png" alt="" />
+              <span>{item.postDetail?.propertyStatus || 'Status not available'}</span>
             </div>
           </div>
           <div className="icons">
@@ -71,4 +71,5 @@ function Card({ item }) {
 }
 
 export default Card;
+
 

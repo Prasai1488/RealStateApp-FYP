@@ -11,6 +11,7 @@ function Filter() {
     minPrice: searchParams.get("minPrice") || "",
     maxPrice: searchParams.get("maxPrice") || "",
     bedroom: searchParams.get("bedroom") || "",
+    propertyStatus: searchParams.get("propertyStatus") || "",
   });
 
   const handleChange = (e) => {
@@ -67,7 +68,6 @@ function Filter() {
             <option value="">any</option>
             <option value="apartment">Apartment</option>
             <option value="house">House</option>
-            
             <option value="land">Land</option>
           </select>
         </div>
@@ -103,6 +103,20 @@ function Filter() {
             onChange={handleChange}
             defaultValue={query.bedroom}
           />
+        </div>
+        <div className="item">
+          <label htmlFor="propertyStatus">Property Status</label>
+          <select
+            name="propertyStatus"
+            id="propertyStatus"
+            onChange={handleChange}
+            defaultValue={query.propertyStatus}
+          >
+            <option value="">any</option>
+            <option value="Available">Available</option>
+            <option value="Booked">Booked</option>
+            <option value="SoldOut">SoldOut</option>
+          </select>
         </div>
         <button onClick={handleFilter}>
           <img src="/search.png" alt="" />
