@@ -8,19 +8,23 @@ import './testimonials.scss';
 const Testimonials = () => {
   const { currentUser } = useContext(AuthContext);
   const [testimonials, setTestimonials] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const fetchTestimonials = async (page) => {
+    try {
+      const res = await apiRequest.get(`/testimonials/get-testimonials?page=${page}&limit=5`);
+      setTestimonials(res.data.testimonials);
+      setCurrentPage(res.data.currentPage);
+      setTotalPages(res.data.totalPages);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const res = await apiRequest.get('/testimonials/get-testimonials');
-        setTestimonials(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchTestimonials();
-  }, []);
+    fetchTestimonials(currentPage);
+  }, [currentPage]);
 
   const handleDelete = async (testimonialId) => {
     try {
@@ -28,6 +32,12 @@ const Testimonials = () => {
       setTestimonials(testimonials.filter(testimonial => testimonial.id !== testimonialId));
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
     }
   };
 
@@ -68,9 +78,25 @@ const Testimonials = () => {
           </div>
         ))}
       </div>
+      <div className="pagination">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
 
 export default Testimonials;
+
 
