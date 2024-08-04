@@ -1,3 +1,4 @@
+
 // import { useContext, useState } from "react";
 // import "./login.scss";
 // import { Link, useNavigate } from "react-router-dom";
@@ -8,7 +9,7 @@
 //   const [error, setError] = useState("");
 //   const [isLoading, setIsLoading] = useState(false);
 
-//   const {updateUser} = useContext(AuthContext)
+//   const { updateUser } = useContext(AuthContext);
 
 //   const navigate = useNavigate();
 
@@ -27,15 +28,21 @@
 //         password,
 //       });
 
-//       updateUser(res.data)
+//       updateUser(res.data);
 
-//       navigate("/");
+//       // Redirect to admin dashboard if the user is an admin
+//       if (res.data.role === "admin") {
+//         navigate("/admin");
+//       } else {
+//         navigate("/");
+//       }
 //     } catch (err) {
 //       setError(err.response.data.message);
 //     } finally {
 //       setIsLoading(false);
 //     }
 //   };
+
 //   return (
 //     <div className="login">
 //       <div className="formContainer">
@@ -68,7 +75,6 @@
 // }
 
 // export default Login;
-
 
 
 import { useContext, useState } from "react";
@@ -137,6 +143,7 @@ function Login() {
           <button disabled={isLoading}>Login</button>
           {error && <span>{error}</span>}
           <Link to="/register">{"Don't"} you have an account?</Link>
+          <Link to="/forgot-password">Forgot your password?</Link>
         </form>
       </div>
       <div className="imgContainer">
@@ -147,4 +154,3 @@ function Login() {
 }
 
 export default Login;
-

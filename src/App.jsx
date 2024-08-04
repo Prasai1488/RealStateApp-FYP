@@ -1,5 +1,3 @@
-
-
 import HomePage from "./routes/homePage/homePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ListPage from "./routes/listPage/listPage";
@@ -17,6 +15,8 @@ import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Testimonials from "./routes/Testimonials/Testimonials";
 import AddTestimonial from "./routes/AddTestimonial/AddTestimonial";
+import ForgotPassword from "./routes/ForgotPassword/ForgotPassword"; // Import the ForgotPassword component
+import ResetPassword from "./routes/ForgotPassword/ResetPassword"; // Import the ResetPassword component
 
 function App() {
   const router = createBrowserRouter([
@@ -49,6 +49,14 @@ function App() {
         {
           path: "/testimonials",
           element: <Testimonials />,
+        },
+        {
+          path: "/forgot-password",
+          element: <ForgotPassword />,
+        },
+        {
+          path: "/reset-password/:token",
+          element: <ResetPassword />,
         },
       ],
     },
