@@ -1,111 +1,99 @@
 .editPost {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 100vh; /* Ensure the main container takes up the full viewport height */
-  overflow-y: auto; /* Enable vertical scrolling */
 
   .formContainer {
-    flex: 1;
-    margin-right: 20px;
-    display: flex;
-    flex-direction: column;
-
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
+    flex: 3;
+    overflow: auto;
 
     .wrapper {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      flex: 1; /* Ensure the wrapper takes up the full height */
-      overflow-y: auto; /* Enable scrolling within the form wrapper */
+      margin: 30px 50px 100px 0px;
 
       form {
         display: flex;
         flex-direction: column;
-        flex: 1;
+        gap: 20px;
 
         .item {
-          margin-bottom: 15px;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
 
           label {
-            display: block;
             font-size: 14px;
-            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
           }
 
           input,
           select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            line-height: 1.5; /* Adjust the line height */
-            appearance: none; /* Remove default styling of select for consistency */
-          }
-
-          select {
-            padding: 8px; /* Adjust padding for the select element */
-            background: url('data:image/svg+xml;base64,...') no-repeat right 0.5rem center / 1rem; /* Custom dropdown arrow */
-            background-color: white;
-            -webkit-appearance: none; /* Remove default styling in Safari */
-            -moz-appearance: none; /* Remove default styling in Firefox */
-            appearance: none; /* Remove default styling in other browsers */
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid gray;
           }
 
           &.description {
-            .quill {
+            width: 100%;
+            height: 320px;
+
+            .quill > .ql-container > .ql-editor {
               height: 200px;
+              font-size: 16px;
             }
           }
         }
-
         .sendButton {
-          background-color: #4caf50;
-          color: #fff;
+          align-self: flex-start;
+          width: 150px;
           padding: 10px;
+          border-radius: 5px;
           border: none;
-          border-radius: 4px;
-          font-size: 16px;
+          background-color: teal;
+          color: white;
+          font-weight: bold;
           cursor: pointer;
-          margin-top: 15px; /* Ensure there is space around the button */
-          align-self: flex-start; /* Align the button to the start */
-        }
-
-        span {
-          color: red;
-          font-size: 14px;
-          margin-top: 10px;
         }
       }
     }
   }
 
   .sideContainer {
-    flex: 0.4;
+    flex: 2;
+    background-color: #fcf5f3;
     display: flex;
     flex-direction: column;
+    gap: 20px;
     align-items: center;
-    overflow-y: auto; /* Enable scrolling within the side container */
+    justify-content: center;
 
     img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      width: 50%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 5px;
     }
 
     .uploadWidget {
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input[type="file"] {
+        display: none;
+      }
+
+      label {
+        background-color: teal;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
     }
   }
+}
+
+.error {
+  color: red;
 }

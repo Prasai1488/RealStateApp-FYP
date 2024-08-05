@@ -17,6 +17,7 @@ import Testimonials from "./routes/Testimonials/Testimonials";
 import AddTestimonial from "./routes/AddTestimonial/AddTestimonial";
 import ForgotPassword from "./routes/ForgotPassword/ForgotPassword"; // Import the ForgotPassword component
 import ResetPassword from "./routes/ForgotPassword/ResetPassword"; // Import the ResetPassword component
+import MortgageCalculator from "./components/MortgageCalculator/MortgageCalculator";
 
 function App() {
   const router = createBrowserRouter([
@@ -58,6 +59,10 @@ function App() {
           path: "/reset-password/:token",
           element: <ResetPassword />,
         },
+        {
+          path: "/calculate-mortgage",
+          element: <MortgageCalculator />,
+        }
       ],
     },
     {

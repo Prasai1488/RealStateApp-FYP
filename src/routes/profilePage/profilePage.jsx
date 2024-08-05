@@ -29,6 +29,7 @@ function ProfilePage() {
       try {
         await apiRequest.delete(`/users/${currentUser.id}`);
         updateUser(null);
+        window.alert("Account deleted successfully")
         navigate("/login");
       } catch (err) {
         console.log("Failed to delete account", err);

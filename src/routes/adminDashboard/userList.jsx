@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import apiRequest from '../../lib/apiRequest';
 import './UserList.scss';
 
-function UserList({ onDeleteUser }) {
+function UserList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -26,6 +26,23 @@ function UserList({ onDeleteUser }) {
   useEffect(() => {
     fetchUsers(page);
   }, [page]);
+
+  const onDeleteUser = async (userId) => {
+    try {
+      const response = await apiRequest.delete(`/admin/delete-user/${userId}`);
+      if (response.status === 200) {
+        alert('User deleted successfully');
+        // Refresh the user list
+        fetchUsers(page);
+      } else {
+        const result = await response.json();
+        alert(`Failed to delete user: ${result.message}`);
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      alert('Failed to delete user');
+    }
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -63,3 +80,4 @@ function UserList({ onDeleteUser }) {
 }
 
 export default UserList;
+

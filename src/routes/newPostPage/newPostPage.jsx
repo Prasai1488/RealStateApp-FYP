@@ -58,6 +58,7 @@ function NewPostPage() {
           propertyStatus: inputs.propertyStatus, // Add propertyStatus
         },
       });
+      window.alert("Your post is currently under review, you will be notified from the admin if it has been rejected by any reasons.")
       navigate("/"+res.data.id)
     } catch (err) {
       console.log(err);
@@ -158,15 +159,15 @@ function NewPostPage() {
               <input min={0} id="size" name="size" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="school">School nearby</label>
+              <label htmlFor="school">School nearby(in meter)</label>
               <input min={0} id="school" name="school" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="bus">Bus station nearby</label>
+              <label htmlFor="bus">Bus station nearby(in meter)</label>
               <input min={0} id="bus" name="bus" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="restaurant">Restaurants nearby</label>
+              <label htmlFor="restaurant">Restaurants nearby(in meter)</label>
               <input min={0} id="restaurant" name="restaurant" type="number" />
             </div>
 

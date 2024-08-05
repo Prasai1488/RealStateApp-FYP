@@ -35,6 +35,8 @@ function Register() {
         password,
       });
 
+      window.alert("Registration successful");
+
       navigate("/login");
     } catch (err) {
       setError(err.response.data.message);
@@ -66,4 +68,10 @@ function Register() {
 }
 
 export default Register;
+
+
+
+
+
+
 
